@@ -1,1 +1,1 @@
-# DL_LAB_Exp3
+# Deep Learning Lab
