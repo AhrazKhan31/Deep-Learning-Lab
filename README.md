@@ -1,5 +1,12 @@
 # Deep Learning Lab
 # EXPERIMENT 1:
+# Neural Network from Scratch with NumPy (MNIST Classification)
+
+## Objective
+
+This project demonstrates how to implement a neural network from scratch using Python and NumPy only for digit classification using the MNIST dataset.
+It includes a Multi-Layer Neural Network which shows implementation of forward and backward propagation using NumPy.
+Activation functions used here are ReLU and Softmax.
 
 # EXPERIMENT 2:
 # Neural Network from Scratch with NumPy
