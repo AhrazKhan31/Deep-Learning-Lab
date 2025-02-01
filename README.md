@@ -16,7 +16,7 @@ Activation functions used here are ReLU and Softmax.
 This project demonstrates how to implement a neural network from scratch using only Python and NumPy on the make_moons dataset from sklearn. We explore two cases:
 
 - **Without Hidden Layers (Single-Layer Perceptron)** – A simple model for binary classification.
-- **With Hidden Layers (Multi-Layer Neural Network)** – A model using backpropagation with activation functions (ReLU & Sigmoid).
+- **With Hidden Layers (Multi-Layer Neural Network)** – A model using backpropagation with activation functions (ReLU and Sigmoid).
 
 # EXPERIMENT 3:
 # CNN Implementation for Image Classification
