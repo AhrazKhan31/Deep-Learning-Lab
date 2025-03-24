@@ -65,6 +65,7 @@ Additionally, we compare the performance of our best CNN models with a pretraine
 The aim of this project is to explore text generation using Recurrent Neural Networks (RNNs) and Long Short-Term Memory (LSTM) models while understanding the impact of different word representation techniques:
 
 **1. One-Hot Encoding**
+
 **2. Trainable Word Embeddings**
 
 The models are trained on a dataset of 100 poems to generate coherent text sequences and compare the performance of both encoding methods.
@@ -72,6 +73,7 @@ The models are trained on a dataset of 100 poems to generate coherent text seque
 ### Dataset
 
 **Data Source:** A collection of 100 poems stored in poems-100.csv.
+
 **Structure:** Each line contains one line of poetry.
 
 The dataset is preprocessed to tokenize the text into words and prepare input-output pairs for training.
@@ -81,19 +83,25 @@ The dataset is preprocessed to tokenize the text into words and prepare input-ou
 ### 1. Preprocessing
 
 **Tokenization:** Clean the text by removing punctuation and splitting it into words.
+
 **One-Hot Encoding:** Convert each word into a one-hot vector of size equal to the vocabulary.
 
 ### 2. Model Architecture
 
 **Input:** One-hot encoded word sequences.
+
 **RNN / LSTM:** The model uses either an RNN or LSTM with multiple layers to predict the next word in a sequence.
 
 ### 3. Implementation Steps
 
 **Tokenize and Create Vocabulary:** Tokenize the dataset and create a vocabulary of unique words.
+
 **Convert to One-Hot Encoding:** Transform the tokens into one-hot encoded vectors.
+
 **Define RNN Model:** Create and define an RNN/LSTM model in PyTorch.
+
 **Train Model:** Train the model to predict the next word in a sequence.
+
 **Generate Text:** Use the trained model to generate new text.
 
 ## Part 2: Trainable Word Embeddings Approach
@@ -101,18 +109,25 @@ The dataset is preprocessed to tokenize the text into words and prepare input-ou
 ### 1. Preprocessing
 
 **Tokenization:** Similar to Part 1, tokenize the text into words.
+
 **Indexing:** Convert words into indexed sequences using word-to-index mapping.
 
 ### 2. Model Architecture
 
 **Input:** Indexed word sequences.
+
 **Embedding Layer:** Use an embedding layer to learn word representations during training.
+
 **RNN / LSTM:** Pass the embedded input through the RNN/LSTM model to predict the next word.
 
 ### 3. Implementation Steps
 
 **Tokenize and Create Vocabulary:** Tokenize the dataset and create a vocabulary of unique words.
+
 **Convert to Indexed Sequences:** Convert tokens to indexed sequences.
+
 **Define RNN Model with Embedding:** Build a PyTorch RNN/LSTM model with an embedding layer.
+
 **Train Model:** Train the model with embedded word representations.
+
 **Generate Text:** Use the trained model to generate text sequences.
