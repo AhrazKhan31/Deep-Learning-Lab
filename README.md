@@ -131,3 +131,64 @@ The dataset is preprocessed to tokenize the text into words and prepare input-ou
 **Train Model:** Train the model with embedded word representations.
 
 **Generate Text:** Use the trained model to generate text sequences.
+
+## Models
+
+Two types of recurrent neural network models were implemented:
+
+1. **RNN:** A standard recurrent neural network. RNNs process sequential data by maintaining a hidden state that is updated at each time step based on the current input and the previous hidden state. This allows them to capture some dependencies between words in a sequence.
+
+2. **LSTM:** A long short-term memory network, known for its ability to capture long-range dependencies in sequences. LSTMs are a type of RNN with a more complex internal structure that includes memory cells and gates. These gates control the flow of information into and out of the memory cells, enabling the network to learn and remember long-term dependencies.
+
+
+## Approaches
+
+Two approaches for representing input text were compared:
+
+1. **One-Hot Encoding:** Each word is represented by a sparse vector with a single '1' at the index corresponding to the word in the vocabulary. While simple to implement, one-hot encoding can lead to very high-dimensional input vectors, especially for large vocabularies. It also doesn't capture any semantic relationships between words.
+
+2. **Trainable Word Embeddings:** Each word is mapped to a dense, lower-dimensional vector that is learned during training. These embeddings capture semantic relationships between words, as words with similar meanings tend to have similar embeddings. This allows the network to learn more meaningful representations of the input text.
+
+
+## Observations
+
+### Loss
+
+* **RNN:**
+    * Surprisingly, the RNN model trained with one-hot encoding showed a *lower* loss compared to the RNN model with trainable word embeddings, contrary to the usual expectation. This could be attributed to several factors:
+        * **Dataset Size:** The poetry dataset is relatively small. One-hot encoding might perform adequately in such cases, especially with simpler models like RNNs, as they might not fully utilize the advantages of word embeddings.
+        * **Hyperparameters:** The specific model hyperparameters, such as hidden size and learning rate, play a crucial role in performance. The current configuration may favor one-hot encoding for the RNN.
+        * **Randomness:**  Weight initialization and data shuffling introduce variability. This particular training run might have favored the one-hot model due to chance.
+
+* **LSTM:**
+    * As expected, the LSTM model trained with trainable word embeddings achieved the *lowest* overall loss among all approaches. This result is more aligned with the general benefits of using embeddings:
+        * **Long-Range Dependencies:**  LSTMs are better at capturing long-range relationships in text.  Word embeddings provide a more informative input representation, enhancing the LSTM's ability to model these dependencies.
+        * **Semantic Information:** Embeddings encode semantic similarities between words, which LSTMs can leverage for better understanding and generation of text.
+
+### Training Time
+
+* **RNN:**
+    * The RNN model with one-hot encoding was observed to be the *fastest* to train. This is likely due to the simpler architecture of RNNs and the potential for smaller input size with one-hot encoding (depending on the vocabulary size and embedding dimension).
+* **LSTM:**
+    * The LSTM model with trainable word embeddings took the *longest* to train. This longer training time is attributed to two main factors:
+        * **Complex Architecture:** LSTMs have a more complex internal structure compared to RNNs, which involves more computations per time step.
+        * **Embedding Layer:** The addition of a trainable embedding layer introduces more parameters to the model, increasing the overall training time.
+
+
+## Summary
+
+| Approach | RNN Loss | RNN Training Time | LSTM Loss | LSTM Training Time |
+|---|---|---|---|---|
+| One-Hot Encoding | **Lower** | Faster | Higher | Moderate |
+| Trainable Word Embeddings | Higher | Moderate | Lowest | Slower |
+
+## Conclusion
+
+The experiments demonstrated that while simpler models like RNNs might show acceptable performance with one-hot encoding on smaller datasets, the benefits of trainable word embeddings become more apparent with more complex models like LSTMs. These embeddings enable the network to learn more nuanced representations of the input text, ultimately leading to better performance, particularly in capturing long-term dependencies and semantic meaning.
+
+## Future Work
+
+* **Larger Datasets:** Testing these approaches on larger text corpora would likely further demonstrate the advantages of embeddings as they tend to shine when given more data to learn from.
+* **Hyperparameter Tuning:** Conducting a thorough search for optimal hyperparameters for each model and encoding type would help to ensure fair comparison and could potentially improve individual model performance.
+* **Validation Data:** Introducing a separate validation set to assess performance on unseen data would allow us to evaluate generalization ability and prevent overfitting to the training data.
+* **Advanced Metrics:**  Considering other evaluation metrics like accuracy or perplexity, in addition to loss, would offer a more comprehensive evaluation of text generation quality.
